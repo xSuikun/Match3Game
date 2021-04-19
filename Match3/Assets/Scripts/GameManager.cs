@@ -6,10 +6,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private BoardGenerator boardGenerator;
-    [SerializeField] private BoardSettings boardSettings;
     [SerializeField] private ClearBoardSystem clearBoardSystem;
-    [SerializeField] private GameUI gameUI;
+    [SerializeField] private BoardSettings boardSettings;
+    [SerializeField] private BoardGenerator boardGenerator;
+    [SerializeField] private TextRefresher textRefresher;
+    [SerializeField] private StatsSaver statsSaver;
+
+    [SerializeField] private GameObject gameOverPanel;
+
+    public int Score { get; private set; }
+    public int Moves { get; private set; }
 
     void Start()
     {
@@ -17,10 +23,10 @@ public class GameManager : MonoBehaviour
         boardGenerator.SetupSettings(boardSettings.xSize, boardSettings.ySize, boardSettings.tileSprites);
         boardGenerator.GenerateBoard();
         clearBoardSystem.SetTileGrid(boardGenerator.tileGrid);
-    }
 
-    private int score = 0;
-    private int moves = 10;
+        Score = 0;
+        Moves = 10;
+    }
 
     public void AddScore(int combo)
     {
@@ -32,39 +38,30 @@ public class GameManager : MonoBehaviour
         else
             value = 800;
 
-        score += value;
-        gameUI.ScoreText.text = "Score: " + score.ToString();
+        Score += value;
+        textRefresher.RefreshScore();
     }
 
     public void DecreaseMoves()
     {
-        moves --;
-        gameUI.MovesText.text = "Moves: " + moves.ToString();
+        Moves--;
+        textRefresher.RefreshMoves();
 
-        if (moves <= 0)
-            GameOver();
+        if (Moves <= 0)
+            ShowGameOverScreen();
     }
 
-    public void ContinueGameForAd()
+    public void ContinueGame()
     {
-        moves += 10;
-        gameUI.GameOverPanel.SetActive(false);
+        Moves += 10;
+        textRefresher.RefreshMoves();
+        gameOverPanel.SetActive(false);
     }
 
-    private void GameOver()
+    private void ShowGameOverScreen()
     {
-        if (score > PlayerPrefs.GetInt("Score"))
-        {
-            PlayerPrefs.SetInt("Score", score);
-            gameUI.BestRecordText.text = "New record: " + PlayerPrefs.GetInt("Score").ToString();
-        }
-        else
-        {
-            gameUI.BestRecordText.text = "Best Record: \n" + PlayerPrefs.GetInt("Score").ToString();
-        }
-
-        gameUI.PreviousResultText.text = "Previous Score: \n" + score.ToString();
-
-        gameUI.GameOverPanel.SetActive(true);
+        statsSaver.CheckIfNewRecord();
+        textRefresher.RefreshPlayerStats();
+        gameOverPanel.SetActive(true);
     }
 }

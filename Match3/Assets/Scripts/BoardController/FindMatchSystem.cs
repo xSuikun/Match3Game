@@ -6,7 +6,6 @@ public class FindMatchSystem : MonoBehaviour
 {
     [SerializeField] private ClearBoardSystem clearBoardSystem;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private GameUI ui;
 
     private bool isFoundMatch;
 

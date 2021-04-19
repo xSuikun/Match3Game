@@ -41,7 +41,7 @@ public class SwapTilesSystem : MonoBehaviour
 
     private void TrySelectTile(Tile tile)
     {
-        if (tile.IsEmpty || clearBoardSystem.IsShifting) return;
+        if (tile.IsEmpty || clearBoardSystem.IsShifting || gameManager.Moves <= 0) return;
 
         if (tile.isSelected) DeselectTile(tile);
         else if (oldSelectedTile == null) SelectTile(tile);
