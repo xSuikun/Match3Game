@@ -56,6 +56,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener
         if (showResult == ShowResult.Finished)
         {
             gameManager.ContinueGame();
+            gameManager.OnAdWatched();
         }
         else if (showResult == ShowResult.Failed)
         {

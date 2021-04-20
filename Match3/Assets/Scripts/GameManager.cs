@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class GameManager : MonoBehaviour
 {
+    public int Score { get; private set; }
+    public int Moves { get; private set; }
+
     [SerializeField] private ClearBoardSystem clearBoardSystem;
     [SerializeField] private BoardSettings boardSettings;
     [SerializeField] private BoardGenerator boardGenerator;
     [SerializeField] private TextRefresher textRefresher;
     [SerializeField] private StatsSaver statsSaver;
-
+    [SerializeField] private AnalyticsScript analyticsScript;
     [SerializeField] private GameObject gameOverPanel;
 
-    public int Score { get; private set; }
-    public int Moves { get; private set; }
+    private int adsPerSession;
 
     void Start()
     {
-        clearBoardSystem.SetupSettings(boardSettings.xSize, boardSettings.ySize, boardSettings.tileSprites);
-        boardGenerator.SetupSettings(boardSettings.xSize, boardSettings.ySize, boardSettings.tileSprites);
         boardGenerator.GenerateBoard();
         clearBoardSystem.SetTileGrid(boardGenerator.tileGrid);
 
@@ -62,6 +60,9 @@ public class GameManager : MonoBehaviour
     {
         statsSaver.CheckIfNewRecord();
         textRefresher.RefreshPlayerStats();
+        analyticsScript.OnGameOver(Score, adsPerSession);
         gameOverPanel.SetActive(true);
     }
+
+    public void OnAdWatched() => adsPerSession++;
 }

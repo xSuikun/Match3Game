@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardGenerator : BoardSettings
+public class BoardGenerator : Board
 {
     [SerializeField] private Tile tilePrefab;
 

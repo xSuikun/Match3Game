@@ -288,7 +288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.16111115, y: 0.64224994}
   m_AnchorMax: {x: 0.8361112, y: 0.7485625}
-  m_AnchoredPosition: {x: 0.4999771, y: 0.5767212}
+  m_AnchoredPosition: {x: 0.49996948, y: 0.5767212}
   m_SizeDelta: {x: 0.38415527, y: 1.1533813}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162102356
@@ -349,50 +349,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162102354}
   m_CullTransparentMesh: 0
---- !u!1 &484351146
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 484351148}
-  - component: {fileID: 484351147}
-  m_Layer: 0
-  m_Name: StatsSaver
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &484351147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484351146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea4045028507ad45b3bbd7996d22cce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 1373214397}
---- !u!4 &484351148
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 484351146}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.14150277, y: -0.1131925, z: -33.7004}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,9 +651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f2f9e177feda440b1151d85e3ce41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 0
-  ySize: 0
-  tileSprites: []
   tilePrefab: {fileID: 267008519156005513, guid: 8b93471aea5b3314d97b21e57b58e9bd,
     type: 3}
 --- !u!4 &1091915958
@@ -741,8 +694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3770d397ea38af8449924d271da55c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 5
-  ySize: 9
   tileSprites:
   - {fileID: 21300000, guid: 9a0830815a5c0804187102f38e72d378, type: 3}
   - {fileID: 21300000, guid: 8f8b205705bbb8b469bf796fbe32b868, type: 3}
@@ -777,9 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c108828bc0c32d47a6b39b40e3771b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 0
-  ySize: 0
-  tileSprites: []
   findMatchSystem: {fileID: 1091915961}
 --- !u!1 &1206818632
 GameObject:
@@ -951,8 +899,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1373214398}
   - component: {fileID: 1373214397}
+  - component: {fileID: 1373214399}
+  - component: {fileID: 1373214400}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: ScriptsGarbage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,7 +924,8 @@ MonoBehaviour:
   boardSettings: {fileID: 1091915960}
   boardGenerator: {fileID: 1091915957}
   textRefresher: {fileID: 1547026970}
-  statsSaver: {fileID: 484351147}
+  statsSaver: {fileID: 1373214400}
+  analyticsScript: {fileID: 1373214399}
   gameOverPanel: {fileID: 703437583}
 --- !u!4 &1373214398
 Transform:
@@ -988,8 +939,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373214399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373214396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb43b09e033464c44a42b98680cce6aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1373214400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373214396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea4045028507ad45b3bbd7996d22cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1373214397}
 --- !u!1 &1547026965
 GameObject:
   m_ObjectHideFlags: 0

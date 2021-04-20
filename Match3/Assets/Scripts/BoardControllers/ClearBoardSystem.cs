@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearBoardSystem : BoardSettings
+public class ClearBoardSystem : Board
 {
     public bool IsSearchingEmptyTile { private get; set; }
     public bool IsShifting { get; private set; }
